@@ -29,8 +29,13 @@ class LaptopSpider(scrapy.Spider):
 
     def parse_product(self, response):
 
+        product_name = response.meta["product_name"]
+
+        brand = product_name.split()[0]
+
         yield {
-            "product_name": response.meta["product_name"],
+            "product_name": product_name,
+            "brand": brand,
             "price": response.css("span::text").re_first(r"₹[\d,]+"),
             "product_url": response.url
         }
