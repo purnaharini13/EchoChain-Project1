@@ -1,5 +1,6 @@
 import scrapy
 import re
+from datetime import datetime
 
 
 class LaptopSpider(scrapy.Spider):
@@ -39,14 +40,20 @@ class LaptopSpider(scrapy.Spider):
             product_name
         )
 
-        ram = re.search(r"\d+GB RAM", product_name)
+        ram = re.search(
+            r"\d+GB RAM",
+            product_name
+        )
 
         storage = re.search(
             r"\d+(?:GB|TB)\s*(?:SSD|HDD)",
             product_name
         )
 
-        screen_size = re.search(r"\d+\s*Inch", product_name)
+        screen_size = re.search(
+            r"\d+\s*Inch",
+            product_name
+        )
 
         yield {
             "product_name": product_name,
@@ -56,5 +63,7 @@ class LaptopSpider(scrapy.Spider):
             "storage": storage.group() if storage else None,
             "screen_size": screen_size.group() if screen_size else None,
             "price": response.css("span::text").re_first(r"₹[\d,]+"),
-            "product_url": response.url
+            "product_url": response.url,
+            "source": "JustUnboxed",
+            "scraped_date": datetime.now().strftime("%Y-%m-%d")
         }
