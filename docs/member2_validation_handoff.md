@@ -1,4 +1,4 @@
-# EchoChain – Member 2 Validation & Handoff
+# EchoChain – Validation & Handoff
 
 ## Lakehouse Validation
 
