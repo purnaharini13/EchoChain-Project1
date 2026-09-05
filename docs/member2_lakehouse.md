@@ -1,4 +1,4 @@
-# EchoChain – Member 2: Data Lakehouse
+# EchoChain : Data Lakehouse
 
 ## Role
 
